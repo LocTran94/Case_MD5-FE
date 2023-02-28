@@ -6,8 +6,9 @@ export default function Home(){
         <>
             <div className="row">
                 <div className="col-12">
-                    <Navbar></Navbar>
+                   <Navbar></Navbar>
                 </div>
+
             </div>
             <div className="row">
                 <div className="col-12">

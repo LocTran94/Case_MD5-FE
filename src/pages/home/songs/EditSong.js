@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
 
@@ -6,14 +6,15 @@ import {useEffect, useState} from "react";
 import {storage} from "../../../firebase";
 import {ref, getDownloadURL, uploadBytesResumable} from "firebase/storage";
 import { getCategory} from "../../../services/categoryService";
-import {addSong} from "../../../services/songService";
-import {getAlbums} from "../../../services/albumService";
+import {addSong, editSong, findByIdSong, getSongs} from "../../../services/songService";
 
 
-export default function AddSong() {
 
 
-    const dispatch = useDispatch();
+export default function EditSong() {
+
+
+
     const navigate = useNavigate();
     const [images, setImages] = useState([]);
     const [urls, setUrls] = useState([]);
@@ -31,12 +32,12 @@ export default function AddSong() {
 
 
 
-    useEffect(() => {
-        dispatch(getCategory())
-    }, [])
-    useEffect(() => {
-        dispatch(getAlbums())
-    }, [])
+    // useEffect(()=>{
+    //     dispatch(findByIdSong(id)).then((value)=>{
+    //         setUrls([value.payload.imageSong])
+    //     })
+    //
+    // },[])
 
     const handleChange = (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
@@ -78,14 +79,13 @@ export default function AddSong() {
             .catch((err) => console.log(err));
     };
 
-    const handleAdd = (values) => {
-        let data = {...values, user: user.idUser};
-        console.log(user.idUser)
-        dispatch(addSong(data)).then(() => {
-            navigate('/home');
-        })
-
-    }
+    // const handleEdit = (values) => {
+    //     let data = [{...values}, id];
+    //     dispatch(editSong(data)).then(() => {
+    //         navigate('/home');
+    //     })
+    //
+    // }
 
 
     return (
@@ -103,7 +103,7 @@ export default function AddSong() {
                     count: ''
                 }} onSubmit={(values) => {
                     values.image = urls[0];
-                    handleAdd(values)
+                    // handleEdit(values)
 
                 }}>
 
@@ -124,7 +124,7 @@ export default function AddSong() {
                             <label htmlFor="exampleInputPassword">Album: </label>
                             <Field as='select' name={'idAlbum'}>
                                 {album !== undefined && album.map((item) => (
-                                    <option value={item.id}>{item.nameAlbum}</option>)
+                                    <option value={item.id} >{item.nameAlbum}</option>)
 
                                 )}
                             </Field>
