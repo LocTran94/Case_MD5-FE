@@ -7,6 +7,9 @@ import AddSong from "./pages/home/songs/AddSong";
 import AddAlbum from "./pages/home/album/AddAlbum";
 import ListAlbum from "./pages/home/album/ListAlbum";
 import EditAlbum from "./pages/home/album/EditAlbum";
+import ListSong from "./pages/home/songs/listSong";
+import EditSong from "./pages/home/songs/EditSong";
+
 
 
 function App() {
@@ -18,9 +21,11 @@ function App() {
                     <Route path={''} element={<Login></Login>}></Route>
                     <Route path={'register'} element={<Register/>}></Route>
                     <Route path={'home'} element={<Home/>}>
+                        <Route path={''} element={<ListSong/>}></Route>
                         <Route path={'add-song'} element={<AddSong/>}></Route>
                         <Route path={'add-album'} element={<AddAlbum/>}></Route>
                         <Route path={'list-album'} element={<ListAlbum/>}></Route>
+                        <Route path={'edit-song/:id'} element={<EditSong/>}></Route>
                         {/*<Route path={'my-list'} element={<MyList/>}></Route>*/}
 
                         <Route path={'edit-album/:id'} element={<EditAlbum/>}></Route>

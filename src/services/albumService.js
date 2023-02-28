@@ -12,7 +12,7 @@ export const findByIdAlbum = createAsyncThunk(
     'albums/findByIdAlbum',
     async (data)=>{
         const res = await customAxios.get('albums/'+data);
-        console.log(1, res.data)
+
         return res.data;
     }
 )
